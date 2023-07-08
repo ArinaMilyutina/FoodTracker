@@ -7,8 +7,6 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.List;
-
 @Repository
 public class HibernateUserDao implements UserDao {
     private static final String FIND_BY_USER_NAME = "from User where username = :username";
