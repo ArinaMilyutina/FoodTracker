@@ -1,9 +1,7 @@
 package com.example.foodtracker.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -18,6 +16,6 @@ public class User extends AbstractEntity{
     private String username;
     private String password;
     private String email;
+    @OneToOne(cascade = CascadeType.ALL)
     private Parameters parameters;
-
 }
