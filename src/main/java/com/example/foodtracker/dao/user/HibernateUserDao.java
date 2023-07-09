@@ -4,15 +4,20 @@ package com.example.foodtracker.dao.user;
 import com.example.foodtracker.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 
-@Repository
+@Service
+@Transactional
 public class HibernateUserDao implements UserDao {
-    private static final String FIND_BY_USER_NAME = "from User where username = :username";
+    private static final String FIND_BY_USERNAME = "from User where username = :username";
+
+    private static final String FIND_BY_EMAIL = "from User where email = :email";
     private static final String USERNAME = "username";
+    private static final String EMAIL = "email";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -24,8 +29,17 @@ public class HibernateUserDao implements UserDao {
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return Optional.of(entityManager.createQuery(FIND_BY_USER_NAME, User.class)
+        return Optional.of(entityManager.createQuery(FIND_BY_USERNAME, User.class)
                 .setParameter(USERNAME, username)
                 .getSingleResult());
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return Optional.of(entityManager.createQuery(FIND_BY_EMAIL, User.class)
+                .setParameter(EMAIL, email)
+                .getSingleResult());
+    }
+
+
 }
