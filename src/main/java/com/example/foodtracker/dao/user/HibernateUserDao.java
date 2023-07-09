@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 @Repository
 public class HibernateUserDao implements UserDao {
@@ -21,9 +23,9 @@ public class HibernateUserDao implements UserDao {
     }
 
     @Override
-    public User findByUserName(String username) {
-        return entityManager.createQuery(FIND_BY_USER_NAME, User.class)
+    public Optional<User> findByUsername(String username) {
+        return Optional.of(entityManager.createQuery(FIND_BY_USER_NAME, User.class)
                 .setParameter(USERNAME, username)
-                .getSingleResult();
+                .getSingleResult());
     }
 }
