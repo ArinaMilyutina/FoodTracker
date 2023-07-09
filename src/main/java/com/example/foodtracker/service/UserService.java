@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService extends NormOfCalories {
+    private static final String MESSAGE = "Your norm of calories to maintain weight is equal to ";
     @Autowired
     private UserDao userDao;
 
@@ -29,23 +30,23 @@ public class UserService extends NormOfCalories {
         switch (activityLevel.getActivityLevel()) {
             case "minimum" -> {
                 parameter.setNorma(minimumLevel(parameter.getAge(), parameter.getHeight(), parameter.getWeight()));
-                return Optional.of("Your norm of calories to maintain weight is equal to " + parameter);
+                return Optional.of(MESSAGE + parameter);
             }
             case "low" -> {
                 parameter.setNorma(lowLevel(parameter.getAge(), parameter.getHeight(), parameter.getWeight()));
-                return Optional.of("Your norm of calories to maintain weight is equal to " + parameter);
+                return Optional.of(MESSAGE + parameter);
             }
             case "average" -> {
                 parameter.setNorma(averageLevel(parameter.getAge(), parameter.getHeight(), parameter.getWeight()));
-                return Optional.of("Your norm of calories to maintain weight is equal to " + parameter);
+                return Optional.of(MESSAGE + parameter);
             }
             case "high" -> {
                 parameter.setNorma(highLevel(parameter.getAge(), parameter.getHeight(), parameter.getWeight()));
-                return Optional.of("Your norm of calories to maintain weight is equal to " + parameter);
+                return Optional.of(MESSAGE + parameter);
             }
             case "very high" -> {
                 parameter.setNorma(veryHighLevel(parameter.getAge(), parameter.getHeight(), parameter.getWeight()));
-                return Optional.of("Your norm of calories to maintain weight is equal to " + parameter);
+                return Optional.of(MESSAGE + parameter);
             }
         }
         return Optional.empty();
