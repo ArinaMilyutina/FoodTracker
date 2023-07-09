@@ -5,9 +5,11 @@ import com.example.foodtracker.dto.RegistrationDto;
 import com.example.foodtracker.entity.User;
 import com.example.foodtracker.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +37,10 @@ public class UserController {
     }
 
     @PostMapping("/reg")
-    public String reg(@ModelAttribute(NEW_USER) RegistrationDto registrationDto) {
+    public String reg(@ModelAttribute(NEW_USER) @Valid RegistrationDto registrationDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "reg";
+        }
         User user = User.builder()
                 .name(registrationDto.getName())
                 .username(registrationDto.getUsername())
@@ -44,6 +49,7 @@ public class UserController {
                 .build();
         userService.createUser(user);
         return "redirect:/user/auth";
+
     }
 
     @GetMapping("/auth")
