@@ -13,18 +13,19 @@
             <form th:action="@{/user/reg}" th:object="${newUser}" method="post">
                 <p>Registration:</p>
                 <div class="col-sm-4 my-auto">
-                    <input type="text" class="form-control" th:field="*{name}" placeholder="Name"/>
-                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-                    <input type="text" class="form-control" th:field="*{username}" placeholder="Username"/>
-                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                    <input type="text" class="form-control" th:field="*{password}" placeholder="Password"/>
-                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     <input type="text" class="form-control" th:field="*{email}" placeholder="Email"/>
-                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <p></p>
+                    <input type="text" class="form-control" th:field="*{name}" placeholder="Name"/>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p> <p></p>
+                    <input type="text" class="form-control" th:field="*{password}" placeholder="Password"/>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p> <p></p>
+                    <input type="text" class="form-control" th:field="*{username}" placeholder="Username"/>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     <div class="d-grid gap-2">
-<!--                        <p style="color: red" th:text="${message}"></p>-->
-                        <button class="btn btn-success">Sign up</button>
-                        <button class="btn btn-primary"><a href="/user/reg" style="color: aliceblue">Authorization</a>
+
+                        <p style="color: darkred" th:text="${message}"></p>
+                        <button class="btn btn-primary">Sign up</button>
+                        <button class="form-control"><a href="/user/auth" >Authorization</a>
                         </button>
                     </div>
                 </div>
