@@ -16,8 +16,4 @@ public class User extends AbstractEntity{
     private String username;
     private String password;
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Parameters parameters;
-    @OneToOne
-    private ActivityLevel activityLevel;
 }
