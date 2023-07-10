@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row align-items-center h-100">
+        <div class="col-md-8 offset-md-5">
+            <form th:action="@{/user/parameters}" th:object="${parameters}" method="post">
+                <p>Enter your parameters:</p>
+                <div class="col-sm-4 my-auto">
+                    <input type="text" class="form-control" th:field="*{activityLevel}" placeholder="ActivityLevel"/>
+                    <p th:if="${#fields.hasErrors('norma')}" th:errors="*{activityLevel}"></p>
+                    <input type="text" class="form-control" th:field="*{age}" placeholder="Age"/>
+                    <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+                    <input type="text" class="form-control" th:field="*{height}" placeholder="Height"/>
+                    <p th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></p>
+                    <input type="text" class="form-control" th:field="*{weight}" placeholder="Weight"/>
+                    <p th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
+                    <div class="d-grid gap-2">
+                        <p></p>
+                            <p style="color: red" th:text="${result}"></p>
+                        <button class="btn btn-success">Sign up</button>
+                        <button class="btn btn-primary"><a href="/user/auth" style="color: aliceblue">Authorization</a>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>
