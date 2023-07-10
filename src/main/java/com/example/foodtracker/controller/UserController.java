@@ -2,7 +2,9 @@ package com.example.foodtracker.controller;
 
 import com.example.foodtracker.dto.LoginDto;
 import com.example.foodtracker.dto.RegistrationDto;
+import com.example.foodtracker.entity.Parameters;
 import com.example.foodtracker.entity.User;
+import com.example.foodtracker.service.ParametersService;
 import com.example.foodtracker.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
     private static final String USER = "user";
+    private static final String RESULT = "result";
+    private static final String PARAMETERS = "parameters";
     private static final String LOGIN_USER = "loginUser";
     private static final String NEW_USER = "newUser";
     private static final String MESSAGE = "message";
@@ -29,6 +33,8 @@ public class UserController {
     private static final String INCORRECT_PASSWORD = "Incorrect password !!!";
     @Autowired
     private UserService userService;
+    @Autowired
+    private ParametersService parametersService;
 
     @GetMapping("/reg")
     public String reg(Model model) {
@@ -66,7 +72,7 @@ public class UserController {
             User user = findByUsername.get();
             if (user.getPassword().equals(loginDto.getPassword())) {
                 httpSession.setAttribute(USER, user);
-                return "redirect:/user/req";
+                return "redirect:/user/parameters";
             } else {
                 model.addAttribute(MESSAGE, INCORRECT_PASSWORD);
 
@@ -76,6 +82,27 @@ public class UserController {
         }
         return "auth";
 
+    }
+
+    @GetMapping("/parameters")
+    public String parameters(Model model) {
+        model.addAttribute(PARAMETERS, new Parameters());
+        return "parameters";
+    }
+
+    @PostMapping("/parameters")
+    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, Model model) {
+        double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
+        Parameters parameters1 = Parameters.builder()
+                .age(parameters.getAge())
+                .height(parameters.getHeight())
+                .weight(parameters.getWeight())
+                .activityLevel(parameters.getActivityLevel())
+                .norma(normaOfCalories)
+                .build();
+        parametersService.createParameters(parameters1);
+        model.addAttribute(RESULT, " "+normaOfCalories);
+        return "parameters";
     }
 
 }
