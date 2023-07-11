@@ -11,5 +11,8 @@ public class ParametersDto {
     private int age;
     private int height;
     private int weight;
-    private double normaCalories;
+    private double normaOfCalories;
+    private double normaOfCaloriesForWeightLoss;
+    private double normaOfCaloriesForWeightGain;
+    private String activityLevel;
 }
