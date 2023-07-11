@@ -14,7 +14,7 @@
                 <p style="color: black">Enter your parameters:</p>
                 <div class="col-sm-4 my-auto">
                     <input  type="text" class="form-control" th:field="*{activityLevel}" placeholder="ActivityLevel"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('norma')}" th:errors="*{activityLevel}"></p><p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('activityLevel')}" th:errors="*{activityLevel}"></p><p></p>
                     <input  type="text" class="form-control" th:field="*{age}" placeholder="Age"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p><p></p>
                     <input   type="text" class="form-control" th:field="*{height}" placeholder="Height"/>
@@ -22,6 +22,7 @@
                     <input   type="text" class="form-control" th:field="*{weight}" placeholder="Weight"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
                     <div class="d-grid gap-2">
+                        <p></p>
                         <p style="color: green" th:text="${result}"></p>
                         <button class="btn btn-primary" >Calculate</button>
                         <button class="form-control"><a href="/user/home">Next</a>
