@@ -13,6 +13,4 @@ import lombok.*;
 @Builder
 public class NormaOfCalories extends AbstractEntity {
     private double normaOfCalories;
-    private double normaOfCaloriesForWeightLoss;
-    private double normaOfCaloriesForWeightGain;
 }

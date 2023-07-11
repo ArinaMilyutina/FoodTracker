@@ -19,4 +19,5 @@ public class Parameters extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private ActivityLevel activityLevel;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<NormaOfCalories> normaOfCalories;}
+    private List<NormaOfCalories> normaOfCalories;
+}

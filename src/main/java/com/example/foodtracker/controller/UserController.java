@@ -107,8 +107,8 @@ public class UserController {
         double normaOfCaloriesForWeightLoss = parametersService.calculateNormaOfCaloriesForWeightLoss(parameters);
         double normaOfCaloriesForWeightGain = parametersService.calculateNormaOfCaloriesForWeightGain(parameters);
         NormaOfCalories norma1 = NormaOfCalories.builder().normaOfCalories(normaOfCalories).build();
-        NormaOfCalories norma2 = NormaOfCalories.builder().normaOfCaloriesForWeightLoss(normaOfCaloriesForWeightLoss).build();
-        NormaOfCalories norma3 = NormaOfCalories.builder().normaOfCaloriesForWeightGain(normaOfCaloriesForWeightGain).build();
+        NormaOfCalories norma2 = NormaOfCalories.builder().normaOfCalories(normaOfCaloriesForWeightLoss).build();
+        NormaOfCalories norma3 = NormaOfCalories.builder().normaOfCalories(normaOfCaloriesForWeightGain).build();
         Parameters parameters1 = Parameters.builder()
                 .activityLevel(parametersDto.getActivityLevel())
                 .age(parametersDto.getAge())
