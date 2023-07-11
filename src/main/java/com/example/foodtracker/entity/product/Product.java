@@ -16,7 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Product extends AbstractEntity {
     private String productName;
-    private int barcode;
+    private String barcode;
     @OneToOne(cascade = CascadeType.ALL)
     private FoodValue foodValue;
 }

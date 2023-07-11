@@ -13,5 +13,5 @@ public class ProductDto {
     private int fats;
     private int carbohydrates;
     private String productName;
-    private int barcode;
+    private String barcode;
 }
