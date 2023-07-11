@@ -7,13 +7,13 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<header class="p-3 mb-3 border-bottom">
+<header th:action="@{/home}" method="get" class="p-3 mb-3 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"></a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <p class="nav-link px-2 link-dark">FoodTracker</p>
-                <li><a href="/user/home" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="#" class="nav-link px-2 link-secondary">CreateProduct</a></li>
                 <li><a href="#" class="nav-link px-2 link-secondary">CreateRecipe</a></li>
                 <li><a href="#" class="nav-link px-2 link-secondary"></a></li>
