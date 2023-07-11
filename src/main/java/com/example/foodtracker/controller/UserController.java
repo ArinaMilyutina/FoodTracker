@@ -1,7 +1,9 @@
 package com.example.foodtracker.controller;
 
 import com.example.foodtracker.dto.LoginDto;
+import com.example.foodtracker.dto.ParametersDto;
 import com.example.foodtracker.dto.RegistrationDto;
+import com.example.foodtracker.entity.NormaOfCalories;
 import com.example.foodtracker.entity.Parameters;
 import com.example.foodtracker.entity.User;
 import com.example.foodtracker.service.ParametersService;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -31,6 +34,7 @@ public class UserController {
     private static final String MESSAGE = "message";
     private static final String USER_NOT_FOUND = "User not found !!!";
     private static final String INCORRECT_PASSWORD = "Incorrect password !!!";
+    private static final String NORMA_CALORIES = "Your daily calorie intake for weight maintenance is ";
     @Autowired
     private UserService userService;
     @Autowired
@@ -91,17 +95,22 @@ public class UserController {
     }
 
     @PostMapping("/parameters")
-    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, Model model) {
+    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, ParametersDto parametersDto, Model model) {
         double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
+        double normaOfCaloriesForWeightLoss = normaOfCalories - normaOfCalories * 0.02;
+        double normaOfCaloriesForWeightGain = normaOfCalories + normaOfCalories * 0.02;
+        NormaOfCalories norma1 = NormaOfCalories.builder().normaOfCalories(normaOfCalories).build();
+        NormaOfCalories norma2 = NormaOfCalories.builder().normaOfCaloriesForWeightLoss(normaOfCaloriesForWeightLoss).build();
+        NormaOfCalories norma3 = NormaOfCalories.builder().normaOfCaloriesForWeightGain(normaOfCaloriesForWeightGain).build();
         Parameters parameters1 = Parameters.builder()
-                .age(parameters.getAge())
-                .height(parameters.getHeight())
-                .weight(parameters.getWeight())
-                .activityLevel(parameters.getActivityLevel())
-                .norma(normaOfCalories)
+                .activityLevel(parametersDto.getActivityLevel())
+                .age(parametersDto.getAge())
+                .height(parametersDto.getHeight())
+                .weight(parametersDto.getWeight())
+                .normaOfCalories(List.of(norma1, norma2, norma3))
                 .build();
         parametersService.createParameters(parameters1);
-        model.addAttribute(RESULT, " "+normaOfCalories);
+        model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories);
         return "parameters";
     }
 
