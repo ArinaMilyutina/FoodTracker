@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,13 +39,13 @@ public class UserController {
     @Autowired
     private ParametersService parametersService;
 
-    @GetMapping("/reg")
+    @RequestMapping(value = "/reg",method = RequestMethod.GET)
     public String reg(Model model) {
         model.addAttribute(NEW_USER, new RegistrationDto());
         return "reg";
     }
 
-    @PostMapping("/reg")
+    @RequestMapping(value = "/reg",method = RequestMethod.POST)
     public String reg(@ModelAttribute(NEW_USER) @Valid RegistrationDto registrationDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "reg";
@@ -64,40 +61,27 @@ public class UserController {
 
     }
 
-    @GetMapping("/auth")
+    @RequestMapping(value = "/auth",method = RequestMethod.GET)
     public String auth(Model model) {
         model.addAttribute(LOGIN_USER, new LoginDto());
         return "auth";
     }
 
-    @PostMapping("/auth")
+    @RequestMapping(value = "/auth",method = RequestMethod.POST)
     public String auth(@ModelAttribute(LOGIN_USER) LoginDto loginDto, Model model, HttpSession httpSession) {
-        Optional<User> findByUsername = userService.findByUsername(loginDto.getUsername());
-        if (findByUsername.isPresent()) {
 
-            User user = findByUsername.get();
-            if (user.getPassword().equals(loginDto.getPassword())) {
-                httpSession.setAttribute(USER, user);
-                return "redirect:/user/parameters";
-            } else {
-                model.addAttribute(MESSAGE, INCORRECT_PASSWORD);
-
-            }
-        } else {
-            model.addAttribute(MESSAGE, USER_NOT_FOUND);
-        }
-        return "auth";
+        return "redirect:/user/parameters";
 
     }
 
-    @GetMapping("/parameters")
+    @RequestMapping(value = "/parameters",method = RequestMethod.GET)
     public String parameters(Model model) {
         model.addAttribute(PARAMETERS, new Parameters());
         return "parameters";
     }
 
-    @PostMapping("/parameters")
-    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, ParametersDto parametersDto, Model model) {
+    @RequestMapping(value = "/parameters",method = RequestMethod.POST)
+    public String parameters(@ModelAttribute(PARAMETERS)  Parameters parameters, ParametersDto parametersDto, Model model, BindingResult bindingResult) {
         double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
         double normaOfCaloriesForWeightLoss = parametersService.calculateNormaOfCaloriesForWeightLoss(parameters);
         double normaOfCaloriesForWeightGain = parametersService.calculateNormaOfCaloriesForWeightGain(parameters);
