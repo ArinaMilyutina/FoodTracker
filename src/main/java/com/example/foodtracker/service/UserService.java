@@ -1,7 +1,7 @@
 package com.example.foodtracker.service;
 
 import com.example.foodtracker.dao.user.UserDao;
-import com.example.foodtracker.entity.User;
+import com.example.foodtracker.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
