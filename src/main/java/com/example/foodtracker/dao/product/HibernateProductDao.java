@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HibernateProductDao implements ProductDao {
-    private static final String FIND_PRODUCT_BY_NAME = "from Product where productName = :productName";
+    private static final String FIND_PRODUCT_BY_NAME = "from Product where productName like :productName";
     private static final String PRODUCT_NAME = "productName";
     @PersistenceContext
     private EntityManager entityManager;
