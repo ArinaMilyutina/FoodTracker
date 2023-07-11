@@ -16,7 +16,17 @@ public class Parameters extends AbstractEntity {
     private int age;
     private int height;
     private int weight;
-    private String activityLevel;
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel activityLevel;
     @OneToMany(cascade = CascadeType.ALL)
     private List<NormaOfCalories> normaOfCalories;
+
+   /* enum ActivityLevel {
+        minimum,
+        low,
+        average,
+        high,
+        very
+    }*/
+
 }

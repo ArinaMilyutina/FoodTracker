@@ -1,5 +1,6 @@
 package com.example.foodtracker.dto;
 
+import com.example.foodtracker.entity.ActivityLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,5 @@ public class ParametersDto {
     private double normaOfCalories;
     private double normaOfCaloriesForWeightLoss;
     private double normaOfCaloriesForWeightGain;
-    private String activityLevel;
+    private ActivityLevel activityLevel;
 }

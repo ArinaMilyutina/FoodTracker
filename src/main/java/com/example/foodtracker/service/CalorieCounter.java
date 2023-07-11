@@ -44,19 +44,19 @@ public class CalorieCounter {
     public double calculateNormaOfCalories(Parameters parameters) {
 
         switch (parameters.getActivityLevel()) {
-            case "minimum" -> {
+            case minimum -> {
                 return minimumLevel(parameters.getAge(), parameters.getHeight(), parameters.getWeight());
             }
-            case "low" -> {
+            case low -> {
                 return lowLevel(parameters.getAge(), parameters.getHeight(), parameters.getWeight());
             }
-            case "average" -> {
+            case average -> {
                 return averageLevel(parameters.getAge(), parameters.getHeight(), parameters.getWeight());
             }
-            case "high" -> {
+            case high -> {
                 return highLevel(parameters.getAge(), parameters.getHeight(), parameters.getWeight());
             }
-            case "very high" -> {
+            case veryHighLevel -> {
                 return veryHighLevel(parameters.getAge(), parameters.getHeight(), parameters.getWeight());
             }
         }
