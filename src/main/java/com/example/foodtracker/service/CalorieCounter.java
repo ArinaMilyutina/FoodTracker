@@ -12,7 +12,7 @@ public class CalorieCounter {
     private static final double AVERAGE = 1.55;
     private static final double HIGH = 1.725;
     private static final double VERY_HIGH = 1.9;
-    private static final double CONST = 0.02;
+    private static final double CONST = 0.2;
 
     public double minimumLevel(int age, int height, int weight) {
         return normaOfCalories(age, height, weight) * MINIMUM;
