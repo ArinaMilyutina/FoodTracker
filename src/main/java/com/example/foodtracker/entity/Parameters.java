@@ -1,8 +1,9 @@
 package com.example.foodtracker.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,6 +16,7 @@ public class Parameters extends AbstractEntity {
     private int age;
     private int height;
     private int weight;
-    private double norma;
     private String activityLevel;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<NormaOfCalories> normaOfCalories;
 }
