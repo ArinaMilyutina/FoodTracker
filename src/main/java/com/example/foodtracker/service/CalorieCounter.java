@@ -12,6 +12,7 @@ public class CalorieCounter {
     private static final double AVERAGE = 1.55;
     private static final double HIGH = 1.725;
     private static final double VERY_HIGH = 1.9;
+    private static final double CONST = 0.02;
 
     public double minimumLevel(int age, int height, int weight) {
         return normaOfCalories(age, height, weight) * MINIMUM;
@@ -61,6 +62,14 @@ public class CalorieCounter {
         }
         return 0;
 
+    }
+
+    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
+        return calculateNormaOfCalories(parameters) - calculateNormaOfCalories(parameters) * CONST;
+    }
+
+    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
+        return calculateNormaOfCalories(parameters) + calculateNormaOfCalories(parameters) * CONST;
     }
 
 }

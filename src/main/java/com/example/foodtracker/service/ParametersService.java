@@ -24,4 +24,12 @@ public class ParametersService {
         return calorieCounter.calculateNormaOfCalories(parameters);
     }
 
+    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
+        return calorieCounter.calculateNormaOfCaloriesForWeightLoss(parameters);
+    }
+
+    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
+        return calorieCounter.calculateNormaOfCaloriesForWeightGain(parameters);
+    }
+
 }
