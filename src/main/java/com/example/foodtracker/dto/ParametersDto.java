@@ -1,6 +1,6 @@
 package com.example.foodtracker.dto;
 
-import com.example.foodtracker.entity.ActivityLevel;
+import com.example.foodtracker.entity.parameters.ActivityLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
