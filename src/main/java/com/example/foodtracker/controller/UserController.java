@@ -35,6 +35,8 @@ public class UserController {
     private static final String USER_NOT_FOUND = "User not found !!!";
     private static final String INCORRECT_PASSWORD = "Incorrect password !!!";
     private static final String NORMA_CALORIES = "Your daily calorie intake for weight maintenance is ";
+    private static final String NORMA_CALORIES_WEIGHT_LOSS = ", for weight loss is ";
+    private static final String NORMA_CALORIES_WEIGHT_GAIN = ", for weight gain is ";
     @Autowired
     private UserService userService;
     @Autowired
@@ -97,8 +99,8 @@ public class UserController {
     @PostMapping("/parameters")
     public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, ParametersDto parametersDto, Model model) {
         double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
-        double normaOfCaloriesForWeightLoss = normaOfCalories - normaOfCalories * 0.02;
-        double normaOfCaloriesForWeightGain = normaOfCalories + normaOfCalories * 0.02;
+        double normaOfCaloriesForWeightLoss = parametersService.calculateNormaOfCaloriesForWeightLoss(parameters);
+        double normaOfCaloriesForWeightGain = parametersService.calculateNormaOfCaloriesForWeightGain(parameters);
         NormaOfCalories norma1 = NormaOfCalories.builder().normaOfCalories(normaOfCalories).build();
         NormaOfCalories norma2 = NormaOfCalories.builder().normaOfCaloriesForWeightLoss(normaOfCaloriesForWeightLoss).build();
         NormaOfCalories norma3 = NormaOfCalories.builder().normaOfCaloriesForWeightGain(normaOfCaloriesForWeightGain).build();
@@ -110,7 +112,8 @@ public class UserController {
                 .normaOfCalories(List.of(norma1, norma2, norma3))
                 .build();
         parametersService.createParameters(parameters1);
-        model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories);
+        model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories + NORMA_CALORIES_WEIGHT_LOSS + normaOfCaloriesForWeightLoss + NORMA_CALORIES_WEIGHT_GAIN + normaOfCaloriesForWeightGain);
+
         return "parameters";
     }
 
