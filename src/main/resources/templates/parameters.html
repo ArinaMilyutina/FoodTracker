@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row align-items-center h-100">
         <div class="col-md-8 offset-md-5">
-            <form th:action="@{/user/parameters}" th:object="${parameters}" method="post">
+            <form th:action="@{/parameters}" th:object="${parameters}" method="post">
                 <p style="color: black">Enter your parameters:</p>
                 <div class="col-sm-4 my-auto">
                     <input  type="text" class="form-control" th:field="*{activityLevel}" placeholder="ActivityLevel"/>
@@ -25,7 +25,7 @@
                         <p></p>
                         <p style="color: green" th:text="${result}"></p>
                         <button class="btn btn-primary" >Calculate</button>
-                        <button class="form-control"><a href="/user/home">Next</a>
+                        <button class="form-control"><a href="/home">Next</a>
                         </button>
                     </div>
                 </div>

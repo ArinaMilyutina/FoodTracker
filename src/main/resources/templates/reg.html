@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row align-items-center h-100">
         <div class="col-md-8 offset-md-5">
-            <form th:action="@{/user/reg}" th:object="${newUser}" method="post">
+            <form th:action="@{/reg}" th:object="${newUser}" method="post">
                 <p>Registration:</p>
                 <div class="col-sm-4 my-auto">
                     <input type="text" class="form-control" th:field="*{email}" placeholder="Email"/>
@@ -25,7 +25,7 @@
 
                         <p style="color: darkred" th:text="${message}"></p>
                         <button class="btn btn-primary">Sign up</button>
-                        <button class="form-control"><a href="/user/auth" >Authorization</a>
+                        <button class="form-control"><a href="/auth" >Authorization</a>
                         </button>
                     </div>
                 </div>

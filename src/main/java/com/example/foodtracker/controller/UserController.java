@@ -17,11 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
     private static final String USER = "user";
     private static final String RESULT = "result";
@@ -57,7 +56,7 @@ public class UserController {
                 .email(registrationDto.getEmail())
                 .build();
         userService.createUser(user);
-        return "redirect:/user/auth";
+        return "redirect:/auth";
 
     }
 
@@ -70,7 +69,7 @@ public class UserController {
     @RequestMapping(value = "/auth",method = RequestMethod.POST)
     public String auth(@ModelAttribute(LOGIN_USER) LoginDto loginDto, Model model, HttpSession httpSession) {
 
-        return "redirect:/user/parameters";
+        return "redirect:/parameters";
 
     }
 
