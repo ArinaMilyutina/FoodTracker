@@ -1,7 +1,7 @@
 package com.example.foodtracker.dao.user;
 
 import com.example.foodtracker.dao.Dao;
-import com.example.foodtracker.entity.User;
+import com.example.foodtracker.entity.user.User;
 
 import java.util.Optional;
 
