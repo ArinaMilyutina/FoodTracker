@@ -1,24 +1,21 @@
 package com.example.foodtracker.dao.user;
 
 
-import com.example.foodtracker.entity.User;
+import com.example.foodtracker.entity.user.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 
-@Service
+@Repository
 @Transactional
 public class HibernateUserDao implements UserDao {
     private static final String FIND_BY_USERNAME = "from User where username = :username";
-
-    private static final String FIND_BY_EMAIL = "from User where email = :email";
     private static final String FIND_BOOLEAN_USER = "select distinct case when count(*) > 0  then 'true'  else 'false' end from User where username = :username";
     private static final String USERNAME = "username";
-    private static final String EMAIL = "email";
     @PersistenceContext
     private EntityManager entityManager;
 
