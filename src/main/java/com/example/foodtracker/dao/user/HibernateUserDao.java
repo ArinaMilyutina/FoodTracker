@@ -16,6 +16,7 @@ public class HibernateUserDao implements UserDao {
     private static final String FIND_BY_USERNAME = "from User where username = :username";
 
     private static final String FIND_BY_EMAIL = "from User where email = :email";
+    private static final String FIND_BOOLEAN_USER = "select distinct case when count(*) > 0  then 'true'  else 'false' end from User where username = :username";
     private static final String USERNAME = "username";
     private static final String EMAIL = "email";
     @PersistenceContext
@@ -34,12 +35,10 @@ public class HibernateUserDao implements UserDao {
                 .getSingleResult());
     }
 
-    @Override
-    public Optional<User> findByEmail(String email) {
-        return Optional.of(entityManager.createQuery(FIND_BY_EMAIL, User.class)
-                .setParameter(EMAIL, email)
-                .getSingleResult());
+
+    public String findUser(String username) {
+        return entityManager.createQuery(FIND_BOOLEAN_USER, String.class)
+                .setParameter(USERNAME, username)
+                .getSingleResult();
     }
-
-
 }
