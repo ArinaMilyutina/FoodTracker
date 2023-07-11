@@ -4,10 +4,12 @@ package com.example.foodtracker.dao.product;
 import com.example.foodtracker.entity.product.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
+@Repository
+@Transactional
 public class HibernateProductDao implements ProductDao {
     private static final String FIND_PRODUCT_BY_NAME = "from Product where productName like :productName";
     private static final String PRODUCT_NAME = "productName";
