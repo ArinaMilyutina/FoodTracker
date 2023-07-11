@@ -1,7 +1,7 @@
 package com.example.foodtracker.service;
 
 
-import com.example.foodtracker.entity.Parameters;
+import com.example.foodtracker.entity.parameters.Parameters;
 import org.springframework.stereotype.Component;
 
 
