@@ -3,9 +3,9 @@ package com.example.foodtracker.controller;
 import com.example.foodtracker.dto.LoginDto;
 import com.example.foodtracker.dto.ParametersDto;
 import com.example.foodtracker.dto.RegistrationDto;
-import com.example.foodtracker.entity.NormaOfCalories;
-import com.example.foodtracker.entity.Parameters;
-import com.example.foodtracker.entity.User;
+import com.example.foodtracker.entity.parameters.NormaOfCalories;
+import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.entity.user.User;
 import com.example.foodtracker.service.ParametersService;
 import com.example.foodtracker.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -118,7 +118,6 @@ public class UserController {
                 .build();
         parametersService.createParameters(parameters1);
         model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories + NORMA_CALORIES_WEIGHT_LOSS + normaOfCaloriesForWeightLoss + NORMA_CALORIES_WEIGHT_GAIN + normaOfCaloriesForWeightGain);
-
         return "parameters";
     }
 
