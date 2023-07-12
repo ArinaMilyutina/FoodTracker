@@ -5,6 +5,8 @@ import com.example.foodtracker.entity.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     @Autowired
@@ -14,7 +16,7 @@ public class ProductService {
         productDao.save(product);
     }
 
-    public Product findProductByName(String nameProduct) {
+    public List<Product> findProductByName(String nameProduct) {
         return productDao.findProductByName(nameProduct);
     }
 
@@ -22,4 +24,6 @@ public class ProductService {
         return productDao.findProductByBarcode(barcode);
 
     }
+
+
 }
