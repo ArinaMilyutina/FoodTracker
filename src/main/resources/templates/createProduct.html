@@ -7,7 +7,6 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="home :: content"></div>
 <div class="container">
     <div class="row align-items-center h-100">
         <div class="col-md-8 offset-md-5">
@@ -25,11 +24,11 @@
                     <input type="text" class="form-control" th:field="*{fats}" placeholder="Fats(g)"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('fats')}" th:errors="*{fats}"></p><p></p>
                     <input type="text" class="form-control" th:field="*{proteins}" placeholder="Proteins(g)"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('proteins')}" th:errors="*{productName}"></p><p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('proteins')}" th:errors="*{productName}"></p>
                     <div class="d-grid gap-2">
                         <p style="color: darkslategray" th:text="${message}"></p>
                         <button class="form-control">Create</button>
-                        </button>
+                        <button class="form-control" ><a href="/home">Home</a></button>
                     </div>
                 </div>
             </form>
