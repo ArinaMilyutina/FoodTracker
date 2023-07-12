@@ -1,7 +1,8 @@
-package com.example.foodtracker.service;
+package com.example.foodtracker.service.parameters;
 
 import com.example.foodtracker.dao.parameters.HibernateParametersDao;
 import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.service.parameters.CalorieCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
