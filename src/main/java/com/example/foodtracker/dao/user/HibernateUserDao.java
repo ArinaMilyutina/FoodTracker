@@ -14,7 +14,7 @@ import java.util.Optional;
 @Transactional
 public class HibernateUserDao implements UserDao {
     private static final String FIND_BY_USERNAME = "from User where username = :username";
-    private static final String FIND_BOOLEAN_USER = "select distinct case when count(*) > 0  then 'true'  else 'false' end from User where username = :username";
+    private static final String FIND_BOOLEAN_USER = "select case when count(*) > 0  then 'true'  else 'false' end from User where username = :username";
     private static final String USERNAME = "username";
     @PersistenceContext
     private EntityManager entityManager;
