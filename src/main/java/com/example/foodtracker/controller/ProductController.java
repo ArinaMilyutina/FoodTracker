@@ -26,17 +26,17 @@ public class ProductController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     private String createProduct(Model model) {
         model.addAttribute(PRODUCT, new ProductDto());
-        return "createProduct";
+        return "product";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     private String createProduct(@ModelAttribute(PRODUCT) @Valid ProductDto productDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "createProduct";
+            return "product";
         }
         if (productService.findProductByBarcode(productDto.getBarcode()).equals("true")) {
             model.addAttribute(MESSAGE, NOT_CREATE_PRODUCT);
-            return "createProduct";
+            return "product";
         }
         Product product = Product.builder()
                 .barcode(productDto.getBarcode())
@@ -45,7 +45,7 @@ public class ProductController {
                 .build();
         productService.createProduct(product);
         model.addAttribute(MESSAGE, CREATE_PRODUCT);
-        return "createProduct";
+        return "product";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
