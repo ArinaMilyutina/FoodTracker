@@ -5,4 +5,6 @@ import com.example.foodtracker.entity.product.Product;
 
 public interface ProductDao extends Dao<Product> {
     Product findProductByName(String productName);
+
+    String findProductByBarcode(String barcode);
 }

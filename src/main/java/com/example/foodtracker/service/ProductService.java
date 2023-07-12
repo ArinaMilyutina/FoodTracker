@@ -10,11 +10,16 @@ public class ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public void createProduct(Product product){
+    public void createProduct(Product product) {
         productDao.save(product);
     }
-    public Product findProduct(String nameProduct){
+
+    public Product findProductByName(String nameProduct) {
         return productDao.findProductByName(nameProduct);
     }
 
+    public String findProductByBarcode(String barcode) {
+        return productDao.findProductByBarcode(barcode);
+
+    }
 }
