@@ -1,5 +1,6 @@
-package com.example.foodtracker.entity;
+package com.example.foodtracker.entity.parameters;
 
+import com.example.foodtracker.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
