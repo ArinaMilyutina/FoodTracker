@@ -14,15 +14,18 @@
                 <p>Authorization:</p>
                 <div class="col-sm-4 my-auto">
                     <input type="text" class="form-control" th:field="*{username}" placeholder="Username"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{password}" placeholder="Password"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{email}" placeholder="Email"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    <p></p>
                     <div class="d-grid gap-2">
                         <p style="color: darkred" th:text="${message}"></p>
                         <button class="btn btn-primary">Sign up</button>
-                        <button class="form-control"><a href="/reg" >Registration</a>
+                        <button class="form-control"><a href="/reg">Registration</a>
                         </button>
                     </div>
                 </div>

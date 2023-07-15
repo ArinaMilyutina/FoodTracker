@@ -14,21 +14,28 @@
                 <p>Create product:</p>
                 <div class="col-sm-4 my-auto">
                     <input type="text" class="form-control" th:field="*{barcode}" placeholder="Barcode"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{productName}" placeholder="Product name"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('productName')}"
+                       th:errors="*{productName}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{calories}" placeholder="Calories"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}"></p> <p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{carbohydrates}" placeholder="Carbohydrates(g)"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('carbohydrates')}" th:errors="*{carbohydrates}"></p><p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('carbohydrates')}"
+                       th:errors="*{carbohydrates}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{fats}" placeholder="Fats(g)"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('fats')}" th:errors="*{fats}"></p><p></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('fats')}" th:errors="*{fats}"></p>
+                    <p></p>
                     <input type="text" class="form-control" th:field="*{proteins}" placeholder="Proteins(g)"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('proteins')}" th:errors="*{productName}"></p>
                     <div class="d-grid gap-2">
                         <p style="color: darkslategray" th:text="${message}"></p>
                         <button class="form-control">Create</button>
-                        <button class="form-control" ><a href="/home">Home</a></button>
+                        <button class="form-control"><a href="/home">Home</a></button>
                     </div>
                 </div>
             </form>
