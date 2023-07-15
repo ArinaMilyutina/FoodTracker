@@ -35,6 +35,8 @@ public class UserController {
     private static final String NORMA_CALORIES = "Your daily calorie intake for weight maintenance is ";
     private static final String NORMA_CALORIES_WEIGHT_LOSS = ", for weight loss is ";
     private static final String NORMA_CALORIES_WEIGHT_GAIN = ", for weight gain is ";
+    private static final String FALSE = "false";
+    private static final String TRUE = "true";
     @Autowired
     private UserService userService;
     @Autowired
@@ -52,7 +54,7 @@ public class UserController {
             return "reg";
         }
         String findUser = userService.findUser(registrationDto.getUsername());
-        if (findUser.equals("false")) {
+        if (findUser.equals(FALSE)) {
             User user = User.builder()
                     .name(registrationDto.getName())
                     .username(registrationDto.getUsername())
@@ -77,7 +79,7 @@ public class UserController {
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public String auth(@ModelAttribute(LOGIN_USER) LoginDto loginDto, Model model, HttpSession httpSession) {
         String findUser = userService.findUser(loginDto.getUsername());
-        if (findUser.equals("true")) {
+        if (findUser.equals(TRUE)) {
             Optional<User> findByUsername = userService.findByUsername(loginDto.getUsername());
             User user = findByUsername.get();
             if (user.getPassword().equals(loginDto.getPassword())) {
