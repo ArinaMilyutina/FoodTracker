@@ -6,7 +6,7 @@ import com.example.foodtracker.dto.RegistrationDto;
 import com.example.foodtracker.entity.parameters.NormaOfCalories;
 import com.example.foodtracker.entity.parameters.Parameters;
 import com.example.foodtracker.entity.user.User;
-import com.example.foodtracker.service.parameters.ParametersService;
+import com.example.foodtracker.service.ParametersService;
 import com.example.foodtracker.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
