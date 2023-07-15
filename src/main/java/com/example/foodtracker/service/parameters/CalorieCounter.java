@@ -41,6 +41,14 @@ public class CalorieCounter {
         return weight * 10 + height * 6.25 - age * 5;
     }
 
+    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
+        return calculateNormaOfCalories(parameters) - calculateNormaOfCalories(parameters) * CONST;
+    }
+
+    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
+        return calculateNormaOfCalories(parameters) + calculateNormaOfCalories(parameters) * CONST;
+    }
+
     public double calculateNormaOfCalories(Parameters parameters) {
 
         switch (parameters.getActivityLevel()) {
@@ -64,12 +72,5 @@ public class CalorieCounter {
 
     }
 
-    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
-        return calculateNormaOfCalories(parameters) - calculateNormaOfCalories(parameters) * CONST;
-    }
-
-    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
-        return calculateNormaOfCalories(parameters) + calculateNormaOfCalories(parameters) * CONST;
-    }
 
 }
