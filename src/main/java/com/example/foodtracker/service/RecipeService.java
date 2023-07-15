@@ -1,7 +1,7 @@
 package com.example.foodtracker.service;
 
 import com.example.foodtracker.dao.recipe.HibernateRecipeDao;
-import com.example.foodtracker.entity.Recipe;
+import com.example.foodtracker.entity.recipe.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +13,5 @@ public class RecipeService {
     public void createRecipe(Recipe recipe) {
         hibernateRecipeDao.save(recipe);
     }
+
 }
