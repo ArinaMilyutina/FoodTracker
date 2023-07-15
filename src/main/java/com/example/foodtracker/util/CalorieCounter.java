@@ -1,4 +1,4 @@
-package com.example.foodtracker.service.parameters;
+package com.example.foodtracker.util;
 
 
 import com.example.foodtracker.entity.parameters.Parameters;
