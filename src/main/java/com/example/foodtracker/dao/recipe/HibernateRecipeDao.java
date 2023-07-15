@@ -24,4 +24,5 @@ public class HibernateRecipeDao implements RecipeDao {
     public List<Recipe> findAll() {
         return entityManager.createQuery(FIND_ALL, Recipe.class).getResultList();
     }
+
 }
