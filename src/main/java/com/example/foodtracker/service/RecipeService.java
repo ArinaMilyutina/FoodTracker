@@ -19,5 +19,4 @@ public class RecipeService {
     public List<Recipe> findAll() {
         return recipeDao.findAll();
     }
-
 }
