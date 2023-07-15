@@ -1,6 +1,7 @@
-package com.example.foodtracker.entity;
+package com.example.foodtracker.entity.user;
 
 
+import com.example.foodtracker.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Table(name="customers")
-public class User extends AbstractEntity{
+public class User extends AbstractEntity {
     private String name;
     private String username;
     private String password;
