@@ -3,13 +3,13 @@ package com.example.foodtracker.dao.recipe;
 import com.example.foodtracker.entity.recipe.Recipe;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Transactional
-@Service
+@Repository
 public class HibernateRecipeDao implements RecipeDao {
     private static final String FIND_ALL = "from Recipe";
     @PersistenceContext
