@@ -2,7 +2,7 @@ package com.example.foodtracker.service.parameters;
 
 import com.example.foodtracker.dao.parameters.HibernateParametersDao;
 import com.example.foodtracker.entity.parameters.Parameters;
-import com.example.foodtracker.util.CalorieCounter;
+import com.example.foodtracker.util.CalorieCounterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class ParametersService {
     @Autowired
     private HibernateParametersDao hibernateParametersDao;
     @Autowired
-    private CalorieCounter calorieCounter;
+    private CalorieCounterUtil calorieCounter;
 
 
     public void createParameters(Parameters parameters) {
