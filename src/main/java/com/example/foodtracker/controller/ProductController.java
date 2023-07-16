@@ -1,7 +1,6 @@
 package com.example.foodtracker.controller;
 
 import com.example.foodtracker.dto.ProductDto;
-import com.example.foodtracker.entity.product.FoodValue;
 import com.example.foodtracker.entity.product.Product;
 import com.example.foodtracker.service.ProductService;
 import jakarta.validation.Valid;
@@ -20,6 +19,7 @@ public class ProductController {
     private static final String MESSAGE = "message";
     private static final String CREATE_PRODUCT = "The product was created successfully.";
     private static final String NOT_CREATE_PRODUCT = "The product already exists!!!";
+    private static final String TRUE = "true";
     @Autowired
     private ProductService productService;
 
@@ -34,15 +34,17 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             return "product";
         }
-        if (productService.findProductByBarcode(productDto.getBarcode()).equals("true")) {
+        if (productService.findProductByBarcode(productDto.getBarcode()).equals(TRUE) && productService.findProductByProductName(productDto.getProductName()).equals(TRUE)) {
             model.addAttribute(MESSAGE, NOT_CREATE_PRODUCT);
             return "product";
         }
         Product product = Product.builder()
-                .barcode(productDto.getBarcode())
                 .productName(productDto.getProductName())
-                .foodValue(FoodValue.builder().calories(productDto.getCalories()).carbohydrates(productDto.getCarbohydrates()).fats(productDto.getFats()).proteins(productDto.getProteins()).build())
-                .build();
+                .barcode(productDto.getBarcode())
+                .proteins(productDto.getProteins())
+                .carbohydrates(productDto.getCarbohydrates())
+                .fats(productDto.getFats())
+                .calories(productDto.getCalories()).build();
         productService.createProduct(product);
         model.addAttribute(MESSAGE, CREATE_PRODUCT);
         return "product";
