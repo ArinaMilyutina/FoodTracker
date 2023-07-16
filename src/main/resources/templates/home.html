@@ -18,7 +18,7 @@
                     <li><a href="/product/create" class="nav-link px-2 link-secondary">CreateProduct</a></li>
                     <li><a href="/recipe/save" class="nav-link px-2 link-secondary">CreateRecipe</a></li>
                     <li><a href="/recipe/recipes" class="nav-link px-2 link-secondary">Recipes</a></li>
-                     <li><a href="#" class="nav-link px-2 link-secondary"></a></li>
+                    <li><a href="#" class="nav-link px-2 link-secondary"></a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/product/search?name=" method="get">
@@ -33,17 +33,23 @@
         </div>
     </header>
     <div th:if="${not #lists.isEmpty(product)}">
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Barcode</th>
+                <th>Calories</th>
+                <th>Proteins</th>
+                <th>Fats</th>
+                <th>Carbohydrates</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="product : ${product}">
                 <td th:text="${product.productName}"></td>
-                <td th:text="${product.barcode}"></td>
+                <td th:text="${product.calories}"></td>
+                <td th:text="${product.proteins}"></td>
+                <td th:text="${product.fats}"></td>
+                <td th:text="${product.carbohydrates}"></td>
             </tr>
             </tbody>
         </table>
