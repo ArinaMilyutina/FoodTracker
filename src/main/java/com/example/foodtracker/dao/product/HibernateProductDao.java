@@ -17,6 +17,8 @@ public class HibernateProductDao implements ProductDao {
     private static final String FIND_PRODUCT_BY_BARCODE = "select case when count(*) > 0  then 'true'  else 'false' end from Product where barcode = :barcode";
     private static final String PRODUCT_NAME = "productName";
     private static final String BARCODE = "barcode";
+    private static final String FIND_PRODUCT_BY_PRODUCT_NAME = "select case when count(*) > 0  then 'true'  else 'false' end from Product where productName = :productName";
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -27,7 +29,7 @@ public class HibernateProductDao implements ProductDao {
     }
 
     @Override
-    public List<Product> findProductByName(String productName) {
+    public List<Product> findProduct(String productName) {
         return entityManager.createQuery(FIND_PRODUCT_BY_NAME, Product.class).setParameter(PRODUCT_NAME, productName).getResultList();
     }
 
@@ -35,6 +37,13 @@ public class HibernateProductDao implements ProductDao {
     public String findProductByBarcode(String barcode) {
         return entityManager.createQuery(FIND_PRODUCT_BY_BARCODE, String.class)
                 .setParameter(BARCODE, barcode)
+                .getSingleResult();
+    }
+
+    @Override
+    public String findProductByName(String productName) {
+        return entityManager.createQuery(FIND_PRODUCT_BY_PRODUCT_NAME, String.class)
+                .setParameter(PRODUCT_NAME, productName)
                 .getSingleResult();
     }
 

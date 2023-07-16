@@ -17,12 +17,16 @@ public class ProductService {
     }
 
     public List<Product> findProductByName(String nameProduct) {
-        return productDao.findProductByName(nameProduct);
+        return productDao.findProduct(nameProduct);
     }
 
     public String findProductByBarcode(String barcode) {
         return productDao.findProductByBarcode(barcode);
 
+    }
+
+    public String findProductByProductName(String productName) {
+        return productDao.findProductByName(productName);
     }
 
 
