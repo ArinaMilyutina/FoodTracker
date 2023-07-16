@@ -13,17 +13,17 @@
             <form th:action="@{/parameters}" th:object="${parameters}" method="post">
                 <p style="color: black">Enter your parameters:</p>
                 <div class="col-sm-4 my-auto">
-                    <input type="text" class="form-control" th:field="*{activityLevel}" placeholder="ActivityLevel"/>
+                    <input type="text" class="form-control" th:field="*{activityLevel}" required placeholder="ActivityLevel"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('activityLevel')}"
                        th:errors="*{activityLevel}"></p>
                     <p></p>
-                    <input type="text" class="form-control" th:field="*{age}" placeholder="Age"/>
+                    <input type="text" class="form-control" pattern="[0-9]*" th:field="*{age}" required placeholder="Age"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
                     <p></p>
-                    <input type="text" class="form-control" th:field="*{height}" placeholder="Height"/>
+                    <input type="text" class="form-control" pattern="[0-9]*" th:field="*{height}" required placeholder="Height"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></p>
                     <p></p>
-                    <input type="text" class="form-control" th:field="*{weight}" placeholder="Weight"/>
+                    <input type="text" class="form-control" pattern="[0-9]*" th:field="*{weight}" required placeholder="Weight"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
                     <div class="d-grid gap-2">
                         <p></p>
