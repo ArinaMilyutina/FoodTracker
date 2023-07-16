@@ -1,22 +1,24 @@
 package com.example.foodtracker.service;
 
+import com.example.foodtracker.dao.product.HibernateNewProductDao;
 import com.example.foodtracker.dao.product.ProductDao;
+import com.example.foodtracker.entity.product.NewProduct;
 import com.example.foodtracker.entity.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private HibernateNewProductDao hibernateNewProductDao;
 
     public void createProduct(Product product) {
         productDao.save(product);
     }
 
-    public List<Product> findProductByName(String nameProduct) {
+    public Product findProductByName(String nameProduct) {
         return productDao.findProduct(nameProduct);
     }
 
@@ -30,4 +32,7 @@ public class ProductService {
     }
 
 
+    public void createNewProduct(NewProduct newProduct) {
+        hibernateNewProductDao.save(newProduct);
+    }
 }
