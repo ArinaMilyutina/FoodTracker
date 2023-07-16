@@ -1,9 +1,7 @@
 package com.example.foodtracker.entity.product;
 
 import com.example.foodtracker.entity.AbstractEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -17,6 +15,8 @@ import lombok.*;
 public class Product extends AbstractEntity {
     private String productName;
     private String barcode;
-    @OneToOne(cascade = CascadeType.ALL)
-    private FoodValue foodValue;
+    private int calories;
+    private int proteins;
+    private int fats;
+    private int carbohydrates;
 }
