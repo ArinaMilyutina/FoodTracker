@@ -15,8 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.HttpRequestHandler;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Optional;
@@ -106,7 +107,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/parameters", method = RequestMethod.POST)
-    public String parameters(@ModelAttribute(PARAMETERS) Parameters parameters, ParametersDto parametersDto, Model model, BindingResult bindingResult) {
+    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, ParametersDto parametersDto, Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/parameters";
+        }
         double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
         double normaOfCaloriesForWeightLoss = parametersService.calculateNormaOfCaloriesForWeightLoss(parameters);
         double normaOfCaloriesForWeightGain = parametersService.calculateNormaOfCaloriesForWeightGain(parameters);
