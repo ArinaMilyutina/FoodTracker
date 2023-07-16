@@ -3,7 +3,7 @@ package com.example.foodtracker.controller;
 import com.example.foodtracker.dto.RecipeDto;
 import com.example.foodtracker.entity.recipe.Recipe;
 import com.example.foodtracker.service.RecipeService;
-import com.example.foodtracker.util.Base64ImageConverter;
+import com.example.foodtracker.util.Base64ImageConverterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +43,7 @@ public class RecipeController {
     public String getAllRecipes(Model model) {
         List<Recipe> recipes = recipeService.findAll();
         model.addAttribute(RECIPE, recipes);
-        model.addAttribute(BASE_64, new Base64ImageConverter());
+        model.addAttribute(BASE_64, new Base64ImageConverterUtil());
         return "recipes";
     }
 
