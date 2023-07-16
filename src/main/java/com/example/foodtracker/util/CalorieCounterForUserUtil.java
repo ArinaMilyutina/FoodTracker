@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class CalorieCounterUtil {
+public class CalorieCounterForUserUtil {
     private static final double MINIMUM = 1.2;
     private static final double LOW = 1.375;
     private static final double AVERAGE = 1.55;
