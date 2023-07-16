@@ -8,12 +8,14 @@ import com.example.foodtracker.entity.parameters.Parameters;
 import com.example.foodtracker.entity.user.User;
 import com.example.foodtracker.service.ParametersService;
 import com.example.foodtracker.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -121,6 +123,12 @@ public class UserController {
         parametersService.createParameters(parameters1);
         model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories + NORMA_CALORIES_WEIGHT_LOSS + normaOfCaloriesForWeightLoss + NORMA_CALORIES_WEIGHT_GAIN + normaOfCaloriesForWeightGain);
         return "parameters";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutUser(HttpServletRequest httpServletRequest) {
+        httpServletRequest.getSession().invalidate();
+        return "redirect:/reg";
     }
 
 }
