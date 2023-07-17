@@ -16,8 +16,10 @@
                 <div class="col-sm-4 my-auto">
                     <input type="text" class="form-control" th:field="*{description}" required
                            placeholder="Description"/>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                     <p></p>
                     <input type="text" class="form-control" th:field="*{name}" required placeholder="Name"/>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
                     <p></p>
                     <input type="file" class="form-control" th:field="*{multipartFile}" accept="image/jpeg" required/>
                     <p></p>

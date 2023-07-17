@@ -7,6 +7,7 @@ import com.example.foodtracker.util.Base64ImageConverterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -30,7 +31,10 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveRecipe(@ModelAttribute(CREATE_RECIPE) RecipeDto recipeDto) throws IOException {
+    public String saveRecipe(@ModelAttribute(CREATE_RECIPE) RecipeDto recipeDto, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "recipe";
+        }
         Recipe recipe = Recipe.builder()
                 .description(recipeDto.getDescription())
                 .name(recipeDto.getName())
