@@ -21,10 +21,9 @@
                     <p></p>
                     <input type="text" class="form-control" th:field="*{email}" placeholder="Email"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                    <p></p>
                     <div class="d-grid gap-2">
                         <p style="color: darkred" th:text="${message}"></p>
-                        <button class="btn btn-primary">Sign up</button>
+                        <button class="form-control">Sign up</button>
                         <button class="form-control"><a href="/reg">Registration</a>
                         </button>
                     </div>

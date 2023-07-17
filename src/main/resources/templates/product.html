@@ -19,8 +19,6 @@
                     <input type="text" class="form-control" th:field="*{calories}" placeholder="Calories"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}"></p>
                     <p></p>
-
-
                     <input type="text" class="form-control" th:field="*{carbohydrates}" placeholder="Carbohydrates(g)"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('carbohydrates')}"
                        th:errors="*{carbohydrates}"></p>
@@ -35,7 +33,6 @@
                     <p style="color: darkred" th:if="${#fields.hasErrors('productName')}"
                        th:errors="*{productName}"></p>
                     <p></p>
-
                     <div class="d-grid gap-2">
                         <p style="color: darkslategray" th:text="${message}"></p>
                         <button class="form-control">Create</button>

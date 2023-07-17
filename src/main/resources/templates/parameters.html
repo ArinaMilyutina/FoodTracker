@@ -30,9 +30,8 @@
                            placeholder="Weight"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
                     <div class="d-grid gap-2">
-                        <p></p>
                         <p style="color: green" th:text="${result}"></p>
-                        <button class="btn btn-primary">Calculate</button>
+                        <button class="form-control">Calculate</button>
                         <button class="form-control"><a href="/home">Next</a>
                         </button>
                     </div>
