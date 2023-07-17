@@ -1,4 +1,4 @@
-package com.example.foodtracker.entity.parameters;
+package com.example.foodtracker.entity.user;
 
 public enum ActivityLevel {
     minimum,

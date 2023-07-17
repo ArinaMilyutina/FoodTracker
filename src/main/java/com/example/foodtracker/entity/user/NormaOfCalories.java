@@ -1,4 +1,4 @@
-package com.example.foodtracker.entity.parameters;
+package com.example.foodtracker.entity.user;
 
 import com.example.foodtracker.entity.AbstractEntity;
 import jakarta.persistence.Entity;
