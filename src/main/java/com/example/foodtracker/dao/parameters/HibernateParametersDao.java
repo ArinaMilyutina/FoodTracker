@@ -1,7 +1,7 @@
 package com.example.foodtracker.dao.parameters;
 
 import com.example.foodtracker.dao.Dao;
-import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.entity.user.Parameters;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
