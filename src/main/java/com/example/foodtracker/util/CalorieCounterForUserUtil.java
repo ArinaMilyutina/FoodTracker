@@ -1,7 +1,7 @@
 package com.example.foodtracker.util;
 
 
-import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.dto.ParametersDto;
 import org.springframework.stereotype.Component;
 
 
@@ -41,15 +41,15 @@ public class CalorieCounterForUserUtil {
         return weight * 10 + height * 6.25 - age * 5;
     }
 
-    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
+    public double calculateNormaOfCaloriesForWeightLoss(ParametersDto parameters) {
         return calculateNormaOfCalories(parameters) - calculateNormaOfCalories(parameters) * CONST;
     }
 
-    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
+    public double calculateNormaOfCaloriesForWeightGain(ParametersDto parameters) {
         return calculateNormaOfCalories(parameters) + calculateNormaOfCalories(parameters) * CONST;
     }
 
-    public double calculateNormaOfCalories(Parameters parameters) {
+    public double calculateNormaOfCalories(ParametersDto parameters) {
 
         switch (parameters.getActivityLevel()) {
             case minimum -> {

@@ -1,7 +1,8 @@
 package com.example.foodtracker.service;
 
 import com.example.foodtracker.dao.parameters.HibernateParametersDao;
-import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.dto.ParametersDto;
+import com.example.foodtracker.entity.user.Parameters;
 import com.example.foodtracker.util.CalorieCounterForUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,15 @@ public class ParametersService {
     }
 
 
-    public double calculateNormaOfCalories(Parameters parameters) {
+    public double calculateNormaOfCalories(ParametersDto parameters) {
         return calorieCounter.calculateNormaOfCalories(parameters);
     }
 
-    public double calculateNormaOfCaloriesForWeightLoss(Parameters parameters) {
+    public double calculateNormaOfCaloriesForWeightLoss(ParametersDto parameters) {
         return calorieCounter.calculateNormaOfCaloriesForWeightLoss(parameters);
     }
 
-    public double calculateNormaOfCaloriesForWeightGain(Parameters parameters) {
+    public double calculateNormaOfCaloriesForWeightGain(ParametersDto parameters) {
         return calorieCounter.calculateNormaOfCaloriesForWeightGain(parameters);
     }
 
