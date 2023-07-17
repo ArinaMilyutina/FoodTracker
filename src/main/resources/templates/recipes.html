@@ -15,7 +15,8 @@
                 <td th:text="${recipe.name}"></td>
                 <td th:text="${recipe.description}"></td>
                 <td><img
-                        th:src="@{'data:image/jpeg;base64,' + ${base64ImageConverter.convertImageToBase64(recipe.image)}}" width="200" height="200"/>
+                        th:src="@{'data:image/jpeg;base64,' + ${base64ImageConverter.convertImageToBase64(recipe.image)}}"
+                        width="200" height="200"/>
                 </td>
             </tr>
         </table>
