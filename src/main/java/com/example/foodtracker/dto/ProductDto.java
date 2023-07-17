@@ -9,16 +9,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto {
-    @NotNull(message = "Enter tha calories product!!!")
+    @NotNull
+    @DecimalMin(value = "0", message = "Check the correctness of the entered data.")
     private int calories;
-    @NotNull(message = "Enter tha proteins product!!!")
+    @NotNull
+    @DecimalMin(value = "0", message = "Check the correctness of the entered data.")
     private int proteins;
-    @NotNull(message = "Enter tha fats product!!!")
+    @NotNull
+    @DecimalMin(value = "0", message = "Check the correctness of the entered data.")
     private int fats;
-    @NotNull(message = "Enter tha carbohydrates product!!!")
+    @NotNull
+    @DecimalMin(value = "0", message = "Check the correctness of the entered data.")
     private int carbohydrates;
-    @NotBlank(message = "Enter the name product!!!")
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String productName;
-    @NotBlank(message = "Enter the barcode product!!!")
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String barcode;
 }
