@@ -44,35 +44,6 @@ public class UserController {
     @Autowired
     private ParametersService parametersService;
 
-
-    @RequestMapping(value = "/auth", method = RequestMethod.GET)
-    public String auth(Model model) {
-
-        model.addAttribute(LOGIN_USER, new LoginDto());
-        return "auth";
-    }
-
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String auth(@ModelAttribute(LOGIN_USER) LoginDto loginDto, Model model, HttpSession httpSession) {
-        String findUser = userService.findUser(loginDto.getUsername());
-        if (findUser.equals(TRUE)) {
-            Optional<User> findByUsername = userService.findByUsername(loginDto.getUsername());
-            User user = findByUsername.get();
-            if (user.getPassword().equals(loginDto.getPassword())) {
-                httpSession.setAttribute(USER, user);
-                return "redirect:/home";
-            } else {
-                model.addAttribute(MESSAGE, INCORRECT_PASSWORD);
-
-            }
-        } else {
-            model.addAttribute(MESSAGE, USER_NOT_FOUND);
-        }
-        return "auth";
-
-    }
-
-
     @RequestMapping(value = "/reg", method = RequestMethod.GET)
     public String reg(Model model) {
         model.addAttribute(NEW_USER, new RegistrationDto());
@@ -124,6 +95,33 @@ public class UserController {
         parametersService.createParameters(parameters1);
         model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories + NORMA_CALORIES_WEIGHT_LOSS + normaOfCaloriesForWeightLoss + NORMA_CALORIES_WEIGHT_GAIN + normaOfCaloriesForWeightGain);
         return "parameters";
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String auth(Model model) {
+
+        model.addAttribute(LOGIN_USER, new LoginDto());
+        return "auth";
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public String auth(@ModelAttribute(LOGIN_USER) LoginDto loginDto, Model model, HttpSession httpSession) {
+        String findUser = userService.findUser(loginDto.getUsername());
+        if (findUser.equals(TRUE)) {
+            Optional<User> findByUsername = userService.findByUsername(loginDto.getUsername());
+            User user = findByUsername.get();
+            if (user.getPassword().equals(loginDto.getPassword())) {
+                httpSession.setAttribute(USER, user);
+                return "redirect:/home";
+            } else {
+                model.addAttribute(MESSAGE, INCORRECT_PASSWORD);
+
+            }
+        } else {
+            model.addAttribute(MESSAGE, USER_NOT_FOUND);
+        }
+        return "auth";
+
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
