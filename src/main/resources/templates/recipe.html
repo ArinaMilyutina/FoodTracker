@@ -12,11 +12,12 @@
     <div class="row align-items-center h-100">
         <div class="col-md-8 offset-md-5">
             <p>Create recipe:</p>
-            <form th:action="@{/recipe/save}" th:object="${createRecipe}"  method="post" enctype="multipart/form-data">
+            <form th:action="@{/recipe/save}" th:object="${createRecipe}" method="post" enctype="multipart/form-data">
                 <div class="col-sm-4 my-auto">
                     <input type="text" class="form-control" th:field="*{description}" required
                            placeholder="Description"/>
-                    <p style="color: darkred" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                    <p style="color: darkred" th:if="${#fields.hasErrors('description')}"
+                       th:errors="*{description}"></p>
                     <p></p>
                     <input type="text" class="form-control" th:field="*{name}" required placeholder="Name"/>
                     <p style="color: darkred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
@@ -24,6 +25,9 @@
                     <input type="file" class="form-control" th:field="*{multipartFile}" accept="image/jpeg" required/>
                     <p></p>
                     <input type="submit" class="form-control" value="Create"/>
+                    <p></p>
+                    <button class="form-control"><a href="/home">Home</a></button>
+
                 </div>
             </form>
         </div>
