@@ -3,8 +3,8 @@ package com.example.foodtracker.controller;
 import com.example.foodtracker.dto.LoginDto;
 import com.example.foodtracker.dto.ParametersDto;
 import com.example.foodtracker.dto.RegistrationDto;
-import com.example.foodtracker.entity.parameters.NormaOfCalories;
-import com.example.foodtracker.entity.parameters.Parameters;
+import com.example.foodtracker.entity.user.NormaOfCalories;
+import com.example.foodtracker.entity.user.Parameters;
 import com.example.foodtracker.entity.user.User;
 import com.example.foodtracker.service.ParametersService;
 import com.example.foodtracker.service.UserService;
@@ -38,39 +38,12 @@ public class UserController {
     private static final String NORMA_CALORIES = "Your daily calorie intake for weight maintenance is ";
     private static final String NORMA_CALORIES_WEIGHT_LOSS = ", for weight loss is ";
     private static final String NORMA_CALORIES_WEIGHT_GAIN = ", for weight gain is ";
-    private static final String FALSE = "false";
     private static final String TRUE = "true";
     @Autowired
     private UserService userService;
     @Autowired
     private ParametersService parametersService;
 
-    @RequestMapping(value = "/reg", method = RequestMethod.GET)
-    public String reg(Model model) {
-        model.addAttribute(NEW_USER, new RegistrationDto());
-        return "reg";
-    }
-
-    @RequestMapping(value = "/reg", method = RequestMethod.POST)
-    public String reg(@ModelAttribute(NEW_USER) @Valid RegistrationDto registrationDto, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "reg";
-        }
-        String findUser = userService.findUser(registrationDto.getUsername());
-        if (findUser.equals(FALSE)) {
-            User user = User.builder()
-                    .name(registrationDto.getName())
-                    .username(registrationDto.getUsername())
-                    .password(registrationDto.getPassword())
-                    .email(registrationDto.getEmail())
-                    .build();
-            userService.createUser(user);
-            return "redirect:/auth";
-
-        }
-        model.addAttribute(MESSAGE, USER_ALREADY_EXISTS);
-        return "reg";
-    }
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public String auth(Model model) {
@@ -87,7 +60,7 @@ public class UserController {
             User user = findByUsername.get();
             if (user.getPassword().equals(loginDto.getPassword())) {
                 httpSession.setAttribute(USER, user);
-                return "redirect:/parameters";
+                return "redirect:/home";
             } else {
                 model.addAttribute(MESSAGE, INCORRECT_PASSWORD);
 
@@ -100,16 +73,39 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/parameters", method = RequestMethod.GET)
-    public String parameters(Model model) {
-        model.addAttribute(PARAMETERS, new Parameters());
+    @RequestMapping(value = "/reg", method = RequestMethod.GET)
+    public String reg(Model model) {
+        model.addAttribute(NEW_USER, new RegistrationDto());
+        return "reg";
+    }
+
+    @RequestMapping(value = "/reg", method = RequestMethod.POST)
+    public String reg(@ModelAttribute(NEW_USER) @Valid RegistrationDto registrationDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "reg";
+        }
+        String findUser = userService.findUser(registrationDto.getUsername());
+        if (findUser.equals(TRUE)) {
+            model.addAttribute(MESSAGE, USER_ALREADY_EXISTS);
+            return "reg";
+        }
+        User user = User.builder()
+                .name(registrationDto.getName())
+                .username(registrationDto.getUsername())
+                .password(registrationDto.getPassword())
+                .email(registrationDto.getEmail())
+                .build();
+        userService.createUser(user);
+        model.addAttribute(NEW_USER, user);
+        model.addAttribute(PARAMETERS, new ParametersDto());
+
         return "parameters";
     }
 
     @RequestMapping(value = "/parameters", method = RequestMethod.POST)
-    public String parameters(@ModelAttribute(PARAMETERS) @Valid Parameters parameters, ParametersDto parametersDto, Model model, BindingResult bindingResult) {
+    public String parameters(@ModelAttribute(NEW_USER) User user, @ModelAttribute(PARAMETERS) @Valid ParametersDto parameters, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/parameters";
+            return "parameters";
         }
         double normaOfCalories = parametersService.calculateNormaOfCalories(parameters);
         double normaOfCaloriesForWeightLoss = parametersService.calculateNormaOfCaloriesForWeightLoss(parameters);
@@ -118,12 +114,13 @@ public class UserController {
         NormaOfCalories norma2 = NormaOfCalories.builder().normaOfCalories(normaOfCaloriesForWeightLoss).build();
         NormaOfCalories norma3 = NormaOfCalories.builder().normaOfCalories(normaOfCaloriesForWeightGain).build();
         Parameters parameters1 = Parameters.builder()
-                .activityLevel(parametersDto.getActivityLevel())
-                .age(parametersDto.getAge())
-                .height(parametersDto.getHeight())
-                .weight(parametersDto.getWeight())
+                .activityLevel(parameters.getActivityLevel())
+                .age(parameters.getAge())
+                .height(parameters.getHeight())
+                .weight(parameters.getWeight())
                 .normaOfCalories(List.of(norma1, norma2, norma3))
                 .build();
+
         parametersService.createParameters(parameters1);
         model.addAttribute(RESULT, NORMA_CALORIES + normaOfCalories + NORMA_CALORIES_WEIGHT_LOSS + normaOfCaloriesForWeightLoss + NORMA_CALORIES_WEIGHT_GAIN + normaOfCaloriesForWeightGain);
         return "parameters";
@@ -134,5 +131,5 @@ public class UserController {
         httpServletRequest.getSession().invalidate();
         return "redirect:/reg";
     }
-
 }
+
