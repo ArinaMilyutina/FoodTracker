@@ -29,4 +29,6 @@ public class ProductDto {
     @NotNull
     @NotEmpty
     private String barcode;
+    private int grams;
+
 }

@@ -25,6 +25,7 @@ public class ProductController {
     private static final String TRUE = "true";
     private static final String FALSE = "false";
     private static final String PRODUCT_NOT_FOUND = "Product not found!!!";
+    private static final int GRAMS = 100;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -51,7 +52,9 @@ public class ProductController {
                 .proteins(productDto.getProteins())
                 .carbohydrates(productDto.getCarbohydrates())
                 .fats(productDto.getFats())
-                .calories(productDto.getCalories()).build();
+                .calories(productDto.getCalories())
+                .grams(GRAMS)
+                .build();
         productService.createProduct(product);
         model.addAttribute(MESSAGE, CREATE_PRODUCT);
         return "product";

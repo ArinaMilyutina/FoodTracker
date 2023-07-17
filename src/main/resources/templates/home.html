@@ -41,6 +41,7 @@
                 <th>Proteins</th>
                 <th>Fats</th>
                 <th>Carbohydrates</th>
+                <th>Grams</th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,7 @@
                 <td th:text="${product.proteins}"></td>
                 <td th:text="${product.fats}"></td>
                 <td th:text="${product.carbohydrates}"></td>
+                <td th:text="${product.grams}+g"></td>
             </tr>
             </tbody>
         </table>

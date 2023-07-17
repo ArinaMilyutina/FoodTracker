@@ -15,8 +15,9 @@ import lombok.*;
 public class Product extends AbstractEntity {
     private String productName;
     private String barcode;
-    private int calories;
-    private int proteins;
-    private int fats;
-    private int carbohydrates;
+    private double calories;
+    private double proteins;
+    private double fats;
+    private double carbohydrates;
+    private int grams;
 }
